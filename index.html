@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+	<title>Sail</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="icon" type="image/png" sizes="174x174" href="./style/favicon.png">
+	
+	<script type="text/javascript" src="./build/Tone.js"></script>
+	<script type="text/javascript" src="./scripts/jquery.min.js"></script>
+	<!-- // <script type="text/javascript" src="./scripts/Interface.js"></script> -->
+	<script type="text/javascript" src="./scripts/Logo.js"></script>
+	<script type="text/javascript" src="./scripts/qwerty-hancock.js"></script>
+	<script type="text/javascript" src="./scripts/markov.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="./style/examples.css">
+
+	<script type="text/javascript">
+		// jshint ignore: start
+	</script>
+
+</head>
+<body>	
+	<style type="text/css">
+
+	</style>
+	<div id="Content" class="FullScreen">
+		<div id="Title">Sail!</div>
+		
+		<div id="Keyboard"></div>
+	</div>
+
+	<script type="text/javascript">
+
+		var synth = new Tone.PolySynth(4, Tone.SimpleSynth).toMaster();
+
+	</script>
+
+	<script id="GUI" type="text/javascript">
+		$(function(){
+
+			var keyboard = new QwertyHancock({
+				id: "Keyboard",
+				width: $("#Content").width(),
+				height: 250,
+				octaves: 2,
+				startNote: "C3",
+				whiteKeyColour: "white",
+				blackKeyColour: "black",
+				activeColour : "lightgray"
+			});
+
+			keyboard.keyDown = function (note) {
+			    synth.triggerAttack(note);
+			};
+
+			keyboard.keyUp = function (note) {
+			    synth.triggerRelease(note);
+					playedNotes.push(note);
+			};
+
+		});
+	</script>
+
+	</style>
+</body>
+</html>
