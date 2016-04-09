@@ -24,7 +24,6 @@ var make_song = function (min_length) {
   note = choice([playedNotes[0]]);
   var song = [note];
 
-  // what does this do?
   while (notestats.hasOwnProperty(note)) {
     var next_notes = notestats[note];
     note = choice(next_notes);
@@ -39,7 +38,7 @@ var make_song = function (min_length) {
 
 
 
-var test = function(len) {
+var generate = function(len) {
   var markovsong = make_song(len);
   // ternary operator to choose how long we want our len to be
   var len = (markovsong.length < len)? markovsong.length : len;
